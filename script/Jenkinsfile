@@ -11,16 +11,23 @@ pipeline{
                 echo "========executing A========"
                 git branch: 'main' , url:'https://github.com/geofLegrand/vprofile-project.git'
             }
+
+        }
+        stage("Build"){
+            steps{
+               mvn clean install
+            }
             post{
                 always{
-                    echo "========always========"
+                    echo "====++++always++++===="
                 }
                 success{
-                    echo "========A executed successfully========"
+                    echo "====++++A executed successfully++++===="
                 }
                 failure{
-                    echo "========A execution failed========"
+                    echo "====++++A execution failed++++===="
                 }
+        
             }
         }
     }
