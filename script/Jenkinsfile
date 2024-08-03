@@ -1,12 +1,15 @@
 
 pipeline{
-    agent{
-        label any
+    agent any
+    tools{
+       jdk "Openjdk17"
+       maven "MAVEN3"
     }
     stages{
-        stage("A"){
+        stage("Fetch source code"){
             steps{
                 echo "========executing A========"
+                git branch: 'main' , url:'https://github.com/geofLegrand/vprofile-project.git'
             }
             post{
                 always{
@@ -21,15 +24,5 @@ pipeline{
             }
         }
     }
-    post{
-        always{
-            echo "========always========"
-        }
-        success{
-            echo "========pipeline executed successfully ========"
-        }
-        failure{
-            echo "========pipeline execution failed========"
-        }
-    }
+
 }
