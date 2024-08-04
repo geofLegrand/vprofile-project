@@ -6,28 +6,22 @@ pipeline{
        maven "MAVEN3"
     }
     stages{
-        stage("Fetch source code"){
-            steps{
-                echo "========executing A========"
-                git branch: 'main' , url:'https://github.com/geofLegrand/vprofile-project.git'
-            }
+        // stage("Fetch source code"){
+        //     steps{
+        //         echo "========executing A========"
+        //         git branch: 'main' , url:'https://github.com/geofLegrand/vprofile-project.git'
+        //     }
 
-        }
+        // }
         stage("Build"){
             steps{
                sh 'mvn clean install'
             }
-            post{
-                always{
-                    echo "====++++always++++===="
-                }
-                success{
-                    echo "====++++A executed successfully++++===="
-                }
-                failure{
-                    echo "====++++A execution failed++++===="
-                }
-        
+            
+        }
+        stage("Test the code"){
+            steps{
+                sh 'mvn test'
             }
         }
     }
