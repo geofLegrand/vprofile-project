@@ -20,9 +20,21 @@ pipeline{
         }
         stage("Build"){
             steps{
-               sh 'mvn clean install'
+               sh 'mvn clean install '
+            }
+            post {
+                success {
+                    echo "New archiving !!!"
+                    archiveArtifacts artifacts: 'target/*.war'
+                }
+                failure{
+                    echo ""
+                }
             }
             
+        }
+        stage('Code analysis'){
+
         }
 
     }
