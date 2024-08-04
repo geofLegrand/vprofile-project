@@ -33,9 +33,9 @@ pipeline{
             }
             
         }
-        stage('Code analysis'){
+        // stage('Code analysis'){
 
-        }
+        // }
 
     }
 
