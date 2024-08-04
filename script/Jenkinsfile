@@ -52,8 +52,9 @@ pipeline{
                         // def scannerHome = tool 'sonar6'
                         sh '''${scannerHome}/bin/sonar-scanner \
                             -Dsonar.projectKey=vprofile \
-                            -Dsonar.projectName=vprofile 
-                            
+                            -Dsonar.projectName=vprofile \
+                            -Dsonar.projectVersion=1.0 \
+                            -Dsonar.sources=src/ 
                             '''
                     
                 }
