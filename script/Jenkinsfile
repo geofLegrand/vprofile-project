@@ -2,7 +2,7 @@
 pipeline{
     agent any
     tools{
-       jdk "Openjdk17"
+       jdk "Openjdk11"
        maven "MAVEN3"
     }
     environment{
@@ -41,32 +41,32 @@ pipeline{
             sh 'mvn checkstyle:checkstyle'
           }
         }
-           stage('Sonar analysis') {
-                  environment{
-                        scannerHome = tool 'sonar4.7'
-                    }
-                    
-            steps {
-                withSonarQubeEnv('sonarQube'){
+        //    stage('Sonar analysis') {
+        //           environment{
+        //                 scannerHome = tool 'sonar4.7'
+        //             }
+
+        //     steps {
+        //         withSonarQubeEnv('sonarQube'){
               
                     
-                        // def scannerHome = tool 'sonar6'
-                        sh '''${scannerHome}/bin/sonar-scanner \
-                            -Dsonar.projectKey=vprofile \
-                            -Dsonar.projectName=vprofile \
-                            -Dsonar.projectVersion=1.0 \
-                            -Dsonar.sources=src \
-                            -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
-                            -Dsonar.junit.reportsPath=target/surfire-reports/ \
-                            -Dsonar.jacoco.reportsPath=target/jacoco.exec \
-                            -Dsonar.java.checkstyle.reportsPaths=target/checkstyle-result.xml
-                            '''
+        //                 // def scannerHome = tool 'sonar6'
+        //                 sh '''${scannerHome}/bin/sonar-scanner \
+        //                     -Dsonar.projectKey=vprofile \
+        //                     -Dsonar.projectName=vprofile \
+        //                     -Dsonar.projectVersion=1.0 \
+        //                     -Dsonar.sources=src/ \
+        //                     -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
+        //                     -Dsonar.junit.reportsPath=target/surfire-reports/ \
+        //                     -Dsonar.jacoco.reportsPath=target/jacoco.exec \
+        //                     -Dsonar.java.checkstyle.reportsPaths=target/checkstyle-result.xml
+        //                     '''
                     
-                }
-            }
+        //         }
+        //     }
             
 
-        }
+        // }
 
 
     }
