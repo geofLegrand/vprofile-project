@@ -1,10 +1,10 @@
 
 pipeline{
     agent any
-    tools{
-       jdk "Openjdk17"
-       maven "MAVEN3"
-    }
+    // tools{
+    //    jdk "Openjdk17"
+    //    maven "MAVEN3"
+    // }
     stages{
         // stage("Fetch source code"){
         //     steps{
