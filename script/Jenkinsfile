@@ -6,7 +6,7 @@ pipeline{
        maven "MAVEN3"
     }
     environment{
-        SONARQUBE_SERVER = "sonar"
+        SONARQUBE_SERVER = "sonarQube"
     }
     stages{
         // stage("Fetch source code"){
@@ -42,11 +42,15 @@ pipeline{
           }
         }
            stage('Sonar analysis') {
+                  environment{
+                        scannerHome = tool 'sonar6'
+                    }
             steps {
-                withSonarQubeEnv(SONARQUBE_SERVER){
-                    script {
-                        def scannerHome = tool 'sonar6'
-                        sh "${scannerHome}/bin/sonar-scanner \
+                withSonarQubeEnv('sonarQube'){
+              
+                    
+                        // def scannerHome = tool 'sonar6'
+                        sh '''${scannerHome}/bin/sonar-scanner \
                             -Dsonar.projectKey=vprofile \
                             -Dsonar.projectName=vprofile \
                             -Dsonar.projectVersion=1.0 \
@@ -54,8 +58,9 @@ pipeline{
                             -Dsonar.java.binaries=target/test-classes/com/visualpathit/account/controllerTest/ \
                             -Dsonar.junit.reportsPath=target/surfire-reports/ \
                             -Dsonar.jacoco.reportsPath=target/jacoco.exec \
-                            -Dsonar.java.checkstyle.reportsPaths=target/checkstyle-result.xml"
-                    }
+                            -Dsonar.java.checkstyle.reportsPaths=target/checkstyle-result.xml
+                            '''
+                    
                 }
             }
             
