@@ -43,7 +43,7 @@ pipeline{
         }
            stage('Sonar analysis') {
                   environment{
-                        scannerHome = tool 'sonar4.7'
+                        scannerHome = tool 'sonar6.1'
                     }
 
             steps {
